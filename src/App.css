@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #dcf8c6;
+  box-sizing: border-box;
+  height: 100vh;
 }
 
 .App-logo {
@@ -28,6 +34,77 @@
   color: #61dafb;
 }
 
+.chat-section, .info-section {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.chat-section {
+  width: 60%;
+  border-right: 1px solid #ddd;
+}
+
+.info-section {
+  width: 40%;
+}
+
+/* .chat-box {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100vh;
+  border: 1px solid #ccc;
+  padding-bottom: 40px;
+  overflow-y: auto;
+} */
+
+.chat-bubble {
+  max-width: 60%;
+  border-radius: 7px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+} 
+
+.info-box p {
+  margin-bottom: 10px;
+}
+
+.user {
+  align-self: flex-end;
+  background-color: #dcf8c6;
+}
+
+.response, .chat-bubble.response {
+  align-self: flex-start;
+  background-color: #f1f0f0;
+}
+
+/* .chat-input {
+  margin-top: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+} */
+
+.chat-input {
+  position: fixed;
+  width: 80%;
+  /* padding: 5px; */
+  /* border: 1px solid #ccc; */
+}
+
+/* .chat-input button, button {
+  padding: 5px 10px;
+  background-color: #34b7f1;
+  border: none;
+  color: white;
+  cursor: pointer;
+} */
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +112,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.chat-box {
+  position: relative;
+  height: calc(100vh - 60px); /* Adjust height as needed, subtracting the height of the chat-input */
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse; /* To have the messages start from the bottom */
 }
