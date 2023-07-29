@@ -8,6 +8,13 @@ class ChatBox extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.chatData !== this.props.chatData) {
+      // Scroll to the latest message
+      this.chatBox.scrollTop = this.chatBox.scrollHeight;
+    }
+  }
+
   handleInputChange = (event) => {
     this.setState({ input: event.target.value });
   };
@@ -23,14 +30,16 @@ class ChatBox extends Component {
     const { input } = this.state;
 
     return (
-      <div className="chat-box">
-        {chatData.map((message, index) => (
-          <div key={index} className={`chat-bubble ${message.user ? 'user' : 'response'}`}>
-            <p>{message.text}</p>
-          </div>
-        ))}
+      <div>
+        <div className="chat-box" ref={chatBox => { this.chatBox = chatBox; }}>
+          {chatData.map((message, index) => (
+            <div key={index} className={`chat-bubble ${message.user ? 'user' : 'response'}`}>
+              <p>{message.text}</p>
+            </div>
+          ))}
+        </div>
         <form className="chat-input" onSubmit={this.handleSubmit}>
-          <input value={input} onChange={this.handleInputChange} />
+          <input value={input} onChange={this.handleInputChange} placeholder="Type your message..." />
           <button type="submit">Send</button>
         </form>
       </div>
